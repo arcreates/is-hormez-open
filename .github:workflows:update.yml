@@ -1,0 +1,27 @@
+name: Hourly Update
+on:
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install requests
+      - name: Update Page
+        env:
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        run: python check_the_strait.py
+      - name: Commit change
+        run: |
+          git config --global user.name "HormuzBot"
+          git config --global user.email "bot@ishormuzclosed.com"
+          git add index.html
+          git commit -m "Hourly vibe check complete" || exit 0
+          git push
