@@ -1,27 +1,38 @@
 name: Hourly Update
+
 on:
   schedule:
     - cron: '0 * * * *'
   workflow_dispatch:
+
+# This section gives the bot the "pen" to write to your repository
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4  # Downloads your code so the bot can see it
+
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
+
       - name: Install dependencies
         run: pip install requests
+
       - name: Update Page
         env:
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
         run: python check_the_strait.py
-      - name: Commit change
+
+      - name: Commit and push if changed
         run: |
           git config --global user.name "HormuzBot"
           git config --global user.email "bot@ishormuzclosed.com"
           git add index.html
-          git commit -m "Hourly vibe check complete" || exit 0
+          git commit -m "Hourly vibe check: May 2, 2026" || exit 0
           git push
