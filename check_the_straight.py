@@ -22,47 +22,47 @@ def update_monitor():
 
     import random
 
-# ... inside your update_monitor() function ...
+    # ... inside your update_monitor() function ...
 
-# THE CAPTAIN'S QUOTE ENGINE
-pirate_tweets = {
-    "danger": [
-        "Captain_Stuck: 'Trump called us pirates again. Thinking of changing the ship's name to The Golden Hindsight.' #NavyPirates",
-        "Captain_Stuck: 'Status: 40 tankers anchored. 0 coffee left. Might start trading crude for espresso beans.'",
-        "Captain_Stuck: 'Update: The Rubicon has been crossed, and my anchor is stuck. Standard Saturday.' #StraitOfHormuz",
-        "Captain_Stuck: 'If I see one more carrier I’m officially claiming this tanker as a sovereign island.'",
-        "Captain_Stuck: 'Admiral told us to stay alert. I told him I haven't blinked since April. Send help.'",
-        "Captain_Stuck: 'Current mood: Shiver me timbers, but in a geopolitical sense.'",
-        "Captain_Stuck: 'They said the Strait was open. My radar says LOL. Someone is lying.' #Hormuz2026"
-    ],
-    "chill": [
-        "Captain_Stuck: 'Quiet night. Almost too quiet. If Fisherman Dave starts singing sea shanties, I’m jumping overboard.'",
-        "Captain_Stuck: 'Oil dropped $2. Finally might be able to afford a sandwich in 2026.'",
-        "Captain_Stuck: 'Just a reminder: We are still here. Please don't forget about us when you're buying your $8 gas.'",
-        "Captain_Stuck: 'Saw a dolphin. It looked more confused about the blockade than we are.'",
-        "Captain_Stuck: 'The sea is flat, the news is boring, and I’ve read every book on this ship twice.'"
-    ],
-    "oil_spike": [
-        "Captain_Stuck: 'Oil at $112? My retirement plan is just selling the fuel in our backup generator.'",
-        "Captain_Stuck: 'At these prices, this tanker is basically a floating Fort Knox. Where’s my cut?'",
-        "Captain_Stuck: 'Price of crude up again. Price of my sanity? All-time low.' #OilPrices"
-    ],
-    "pirate_humor": [
-        "Captain_Stuck: 'What do you call a pirate with two eyes and two legs? A rookie. Or a very lucky Ensign.'",
-        "Captain_Stuck: 'Someone asked for my boarding pass. I showed them my 5-inch deck gun. They didn't laugh.'",
-        "Captain_Stuck: 'Status: Arrr-gumentative. The Navy called. They want their dignity back.'"
-    ]
-}
+    # THE CAPTAIN'S QUOTE ENGINE
+    pirate_tweets = {
+        "danger": [
+            "Captain_Stuck: 'Trump called us pirates again. Thinking of changing the ship's name to The Golden Hindsight.' #NavyPirates",
+            "Captain_Stuck: 'Status: 40 tankers anchored. 0 coffee left. Might start trading crude for espresso beans.'",
+            "Captain_Stuck: 'Update: The Rubicon has been crossed, and my anchor is stuck. Standard Saturday.' #StraitOfHormuz",
+            "Captain_Stuck: 'If I see one more carrier I’m officially claiming this tanker as a sovereign island.'",
+            "Captain_Stuck: 'Admiral told us to stay alert. I told him I haven't blinked since April. Send help.'",
+            "Captain_Stuck: 'Current mood: Shiver me timbers, but in a geopolitical sense.'",
+            "Captain_Stuck: 'They said the Strait was open. My radar says LOL. Someone is lying.' #Hormuz2026"
+        ],
+        "chill": [
+            "Captain_Stuck: 'Quiet night. Almost too quiet. If Fisherman Dave starts singing sea shanties, I’m jumping overboard.'",
+            "Captain_Stuck: 'Oil dropped $2. Finally might be able to afford a sandwich in 2026.'",
+            "Captain_Stuck: 'Just a reminder: We are still here. Please don't forget about us when you're buying your $8 gas.'",
+            "Captain_Stuck: 'Saw a dolphin. It looked more confused about the blockade than we are.'",
+            "Captain_Stuck: 'The sea is flat, the news is boring, and I’ve read every book on this ship twice.'"
+        ],
+        "oil_spike": [
+            "Captain_Stuck: 'Oil at $112? My retirement plan is just selling the fuel in our backup generator.'",
+            "Captain_Stuck: 'At these prices, this tanker is basically a floating Fort Knox. Where’s my cut?'",
+            "Captain_Stuck: 'Price of crude up again. Price of my sanity? All-time low.' #OilPrices"
+        ],
+        "pirate_humor": [
+            "Captain_Stuck: 'What do you call a pirate with two eyes and two legs? A rookie. Or a very lucky Ensign.'",
+            "Captain_Stuck: 'Someone asked for my boarding pass. I showed them my 5-inch deck gun. They didn't laugh.'",
+            "Captain_Stuck: 'Status: Arrr-gumentative. The Navy called. They want their dignity back.'"
+        ]
+    }
 
-# Logic to pick the right category
-if status_class == "danger":
-    category = "danger" if random.random() > 0.3 else "pirate_humor"
-elif float(oil_price) > 110:
-    category = "oil_spike"
-else:
-    category = "chill"
+    # Logic to pick the right category
+    if status_class == "danger":
+        category = "danger" if random.random() > 0.3 else "pirate_humor"
+    elif float(oil_price) > 110:
+        category = "oil_spike"
+    else:
+        category = "chill"
 
-meme_quote = random.choice(pirate_tweets[category])
+    meme_quote = random.choice(pirate_tweets[category])
 
     # Final combined vibe check
     combined_text = (headline + meme_quote).lower()
