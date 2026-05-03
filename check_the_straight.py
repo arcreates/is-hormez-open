@@ -30,9 +30,9 @@ def update_monitor():
     
     if any(word in combined_text for word in danger_words):
         panic_angle = 75
-        status_text = "EFFECTIVELY CLOSED"
+        status_text = "PIRACY INTENSIFIES"  # Even better than 'Effectively Closed'
         status_class = "danger"
-        panic_level = "MAXIMUM PIRACY"
+        panic_level = "FULL BLACKBEARD"    # Maximum meme level
         vibe_check = "Aggressive"
     else:
         panic_angle = -75
