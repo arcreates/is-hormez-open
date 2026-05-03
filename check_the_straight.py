@@ -29,6 +29,7 @@ def update_monitor():
         status_text = "PIRACY INTENSIFIES"
         panic_level = "CRITICAL"
         panic_angle = 45
+        pirate_tax = f"+{random.randint(400, 800)}%" # Ensure this line is HERE
         # Reality check: Blockades mean almost zero flow
         traffic_flow = random.randint(5, 15) 
     elif oil_price > 112:
