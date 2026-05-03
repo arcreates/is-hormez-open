@@ -6,7 +6,7 @@ def update_monitor():
     # 1. FETCH NEWS DATA
     # Fallback headlines for May 2, 2026
     api_key = os.getenv('NEWS_API_KEY')
-    url = f'https://newsapi.org/v2/everything?q=Strait+of+Hormuz+OR+Iran+Blockade&sortBy=publishedAt&apiKey={api_key}'
+    url = f'https://newsapi.org/v2/everything?q=Strait+of+Hormuz+OR+Iran+Blockade&sortBy=publishedAt&language=en&apiKey={api_key}'
     
     try:
         response = requests.get(url)
