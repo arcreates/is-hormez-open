@@ -5,34 +5,32 @@ on:
     - cron: '0 * * * *'
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Important: Gets full history
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.x'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pip install requests
 
-      - name: Update Page
+      - name: Run Update Script
         env:
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
-        # We use './' to tell Python "look in the current folder"
-        run: python ./check_the_straight.py
+        run: python check_the_strait.py
 
-      - name: Commit and push if changed
+      - name: Commit and Push Changes
         run: |
-          git config --global user.name "HormuzBot"
-          git config --global user.email "bot@ishormuzclosed.com"
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add index.html
-          git commit -m "Hourly update for May 2, 2026" || exit 0
+          git commit -m "Hourly Intel Update [skip ci]" || echo "No changes to commit"
           git push
