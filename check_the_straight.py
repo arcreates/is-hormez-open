@@ -48,7 +48,7 @@ def update_monitor():
         panic_level = "CHILL"
         vibe_check = "Smooth"
         meme_quote = "Fisherman_Dave: 'Quiet day on the water. No carriers in sight.'"
-        
+
     # 4. DATA DICTIONARY
     data = {
         "status_text": status_text,
@@ -62,6 +62,35 @@ def update_monitor():
         "vibe_check": vibe_check,
         "last_update": datetime.now().strftime("%H:00")
     }
+
+    # 4.5 LOGIC FOR HISTORY ROWS
+        new_row = f"""
+        <tr style="border-bottom: 1px solid #444;">
+            <td style="padding: 10px;">{datetime.now().strftime("%H:00")}</td>
+            <td>{status_text}</td>
+            <td>${oil_price}</td>
+            <td>{vibe_check}</td>
+        </tr>
+        """
+
+        # Try to keep the last 5 rows from the existing page
+        try:
+            with open('index.html', 'r') as f:
+                old_page = f.read()
+            # This is a bit 'hacky' but works for a single-file site:
+            # We grab everything between the first <tr> and the last </tr>
+            if "" in old_page:
+                existing_history = old_page.split("")[1].split("")[0]
+                # Keep only the last 4 rows to avoid the page getting too long
+                rows = existing_history.split('</tr>')[:4]
+                history_rows = new_row + "</tr>".join(rows) + "</tr>"
+            else:
+                history_rows = new_row
+        except:
+            history_rows = new_row
+
+        # Add this to your data dictionary
+        data["history_rows"] = history_rows
 
     # 5. READ AND INJECT (Using Square Brackets [[ ]])
     with open('template.html', 'r') as f:
