@@ -1,1 +1,2 @@
 
+<tr><td class='time-col'>04:27 AM</td><td><span class='hist-chill'>● Vessels Moving</span></td><td>$110.4</td></tr>
