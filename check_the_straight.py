@@ -88,7 +88,8 @@ def update_monitor():
         "[[history_rows]]": recent_history,
         "[[oil_price]]": str(oil_price),
         "[[traffic_flow]]": str(traffic_flow),
-        "[[war_cost]]": str(war_cost_billions)
+        "[[war_cost]]": str(war_cost_billions),
+        "[[pirate_tax]]": pirate_tax  # <--- ADD THIS LINE
     }
 
     # Perform the swap
