@@ -1,2 +1,3 @@
 
 <tr><td>03:43 AM</td><td><span class='dot danger'>●</span> PIRACY INTENSIFIES</td><td>$114.02</td></tr>
+<tr><td>03:48 AM</td><td><span class='dot danger'>●</span> PIRACY INTENSIFIES</td><td>$112.54</td></tr>
