@@ -1,31 +1,19 @@
-# 🚢 Is Hormuz Open? (2026 Crisis Monitor)
+# 🏴‍☠️ NavyPirateMonitor.com
+### "Because the 5th Fleet isn't going to track itself."
 
-**Live URL:** [https://arcreates.github.io/is-hormez-open/](https://arcreates.github.io/is-hormez-open/)
+Welcome to the official 2026 Hormuz Crisis Tracker. As of May 2, 2026, the Strait is less of a shipping lane and more of a "high-stakes toll booth." Whether you call them the Navy or "Pirates" (looking at you, Mr. President), we track their vibes so you know why your gas costs $7.00 a gallon.
 
-An automated, data-driven dashboard tracking the status of the Strait of Hormuz during the 2026 blockade crisis. This tool monitors global news, oil prices, and maritime traffic to provide a real-time "Panic Meter" and geopolitical vibe check.
+## 📡 Intelligence Feed
+- **Panic Status:** Automatically calculated based on how many times "war," "blockade," or "Rubicon" appears in the global news cycle.
+- **Economic Toll:** Live tracking of the $100B+ price tag of this naval standoff.
+- **Meme Integration:** Scraping the finest salt from "Captain Stuck" and "Fisherman Dave" to ensure the vibe check is accurate.
 
-## 📡 Features
-* **Real-time Intelligence:** Automatically scrapes News API for updates regarding naval blockades and diplomatic standoffs.
-* **Dynamic Gauge:** A visual needle that swings between **CHILL** and **MAXIMUM PIRACY** based on headline sentiment.
-* **24-Hour Trend Log:** A persistent history table that tracks hourly status changes, oil price fluctuations, and geopolitical vibes.
-* **Zero-Maintenance:** Fully powered by GitHub Actions—updating every hour on the hour without human intervention.
+## 🛠️ The Black Box (Tech)
+- **Engine:** Python 3.x (The Navigator)
+- **Crew:** GitHub Actions (Running hourly raids on the News API)
+- **Interface:** High-contrast CSS for maximum visibility during night-time naval maneuvers.
 
-## 🛠️ Tech Stack
-* **Python 3.x:** The "brain" of the operation. Handles data scraping, sentiment logic, and HTML injection.
-* **GitHub Actions:** The "engine." Executes the Python script every 60 minutes.
-* **HTML5/CSS3:** A custom "War Room" UI inspired by Bloomberg terminals and naval command centers.
+## 📜 Legal Disclaimer
+This is a satirical data-visualization project. If you are an actual tanker captain, please use a real radar and not a website run by an AI bot. 
 
-## 🤖 How It Works
-1. The **GitHub Action** wakes up at `:00` past the hour.
-2. The `check_the_strait.py` script fetches headlines and checks for "Danger Words" (e.g., *Pirate, Reject, Blockade*).
-3. The script reads `template.html`, injects the new data, and updates the `index.html`.
-4. The change is committed back to the repository, and GitHub Pages redeploys the site instantly.
-
-## 📜 Setup
-To run this locally or fork your own:
-1. Clone the repo.
-2. Add your `NEWS_API_KEY` to your GitHub Repository Secrets.
-3. Push a change to trigger the first build!
-
----
-*Disclaimer: This is a project tracking the fictional/projected events of 2026 for research and educational purposes.*
+*Currently cruising at **MAXIMUM PIRACY** status.*
