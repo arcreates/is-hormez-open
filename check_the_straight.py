@@ -77,10 +77,22 @@ def update_monitor():
     with open('index.html', 'r') as f:
         content = f.read()
 
-    # Create the history row
-    new_row = f"<tr><td>{last_update}</td><td><span class='dot {status_class}'>●</span> {status_text}</td><td>${oil_price}</td></tr>\n"
-    
-    # Injection Logic
+    # --- NEW PERSISTENT HISTORY LOGIC ---
+    # 1. Save the new row to history.txt first
+    with open('history.txt', 'a') as hf:
+        hf.write(new_row)
+
+    # 2. Read all historical rows
+    with open('history.txt', 'r') as hf:
+        all_history = hf.readlines()
+        # Keep only the last 20 entries and reverse them so newest is on top
+        recent_history = "".join(reversed(all_history[-20:]))
+
+    # 3. Read the CLEAN template (never index.html!)
+    with open('template.html', 'r') as f:
+        content = f.read()
+
+    # 4. Do the replacements
     content = content.replace("[[headline]]", headline)
     content = content.replace("[[oil_price]]", str(oil_price))
     content = content.replace("[[war_cost]]", str(war_cost_billions))
@@ -90,8 +102,11 @@ def update_monitor():
     content = content.replace("[[panic_angle]]", str(panic_angle))
     content = content.replace("[[meme_quote]]", meme_quote)
     content = content.replace("[[last_update]]", last_update)
-    content = content.replace("", f"\n{new_row}")
+    
+    # Inject the safe history log
+    content = content.replace("", recent_history)
 
+    # 5. Write the final version to index.html
     with open('index.html', 'w') as f:
         f.write(content)
 
