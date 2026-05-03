@@ -65,25 +65,28 @@ def update_monitor():
     with open('template.html', 'r') as f:
         content = f.read()
 
+    # Use a dictionary for cleaner replacements
     replacements = {
-        "[[headline]]": headline,
+        "[[headline]]": str(headline),
         "[[oil_price]]": str(oil_price),
         "[[war_cost]]": str(war_cost_billions),
-        "[[status_class]]": status_class,
-        "[[status_text]]": status_text,
-        "[[panic_level]]": panic_level,
+        "[[status_class]]": str(status_class),
+        "[[status_text]]": str(status_text),
+        "[[panic_level]]": str(panic_level),
         "[[panic_angle]]": str(panic_angle),
-        "[[meme_quote]]": meme_quote,
-        "[[last_update]]": last_update,
-        "": recent_history
+        "[[meme_quote]]": str(meme_quote),
+        "[[last_update]]": str(last_update),
+        "": str(recent_history)
     }
 
+    # IMPORTANT: Always start with the fresh template content
+    final_output = content
     for placeholder, value in replacements.items():
-        content = content.replace(placeholder, value)
+        final_output = final_output.replace(placeholder, value)
 
-    # 7. WRITE TO INDEX.HTML
-    with open('index.html', 'w') as f:
-        f.write(content)
+    # Write to index.html
+    with open('index.html', 'w', encoding='utf-8') as f:
+        f.write(final_output)
 
 if __name__ == "__main__":
     update_monitor()
