@@ -1,233 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NavyPirateMonitor.com | LIVE HORMEZ INTEL</title>
+    <title>NavyPirateMonitor.com | LIVE</title>
     <style>
-        /* THE NEWSROOM LOOK */
-        body {
-            margin: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #1a1a1a;
-            color: white;
-            transition: background-color 0.5s ease;
-            text-align: center;
-        }
-
-        /* Changes background based on status */
-        body.danger { background-color: #4b0000; }
-        body.warning { background-color: #5c4d00; }
-        body.success { background-color: #002b00; }
-
-        .news-banner {
-            background: #ff0000;
-            padding: 10px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            border-bottom: 3px solid white;
-        }
-
-        .live-dot {
-            color: #fff;
-            animation: blink 1s infinite;
-        }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
-
-        .container { padding: 40px 20px; max-width: 800px; margin: auto; }
-
-        /* THE GAUGE */
-        .gauge-container { margin: 40px 0; }
-        .gauge {
-            width: 240px;
-            height: 120px;
-            background: linear-gradient(to right, #00ff00, #ffff00, #ff0000);
-            border-radius: 120px 120px 0 0;
-            position: relative;
-            margin: auto;
-            border: 5px solid #333;
-        }
-        .needle {
-            width: 4px;
-            height: 100px;
-            background: white;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform-origin: bottom center;
-            /* The Python script will change this number */
-            transform: translateX(-50%) rotate({{ panic_angle }}deg);
-            transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        .status-box {
-            font-size: 3em;
-            font-weight: 900;
-            margin: 20px 0;
-            text-transform: uppercase;
-        }
-
-        /* MEME TICKER */
-        .meme-ticker {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid #444;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        .meme-quote {
-            font-family: 'Courier New', monospace;
-            color: #00ff00;
-            font-size: 1.2em;
-        }
-
-        .data-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 10px;
-            margin-top: 30px;
-        }
-        .data-item { background: #333; padding: 15px; border-radius: 5px; }
-        
-        .footer { font-size: 0.8em; opacity: 0.6; margin-top: 50px; }
-
-        #history-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9rem;
-        }
-
-        #history-table th {
-            text-align: left;
-            color: #888;
-            border-bottom: 2px solid #444;
-            padding: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        #history-table td {
-            padding: 12px 8px;
-            border-bottom: 1px solid #333;
-        }
-
-        /* Color coding for the history statuses */
-        .hist-danger { color: #ff4d4d; font-weight: bold; }
-        .hist-success { color: #00ff00; }
-        .hist-warning { color: #ffcc00; }
-
-        .time-col { color: #aaa; }
-
-        .pirate-banner {
-            background: linear-gradient(90deg, #000, #440000, #000);
-            color: #ff4d4d;
-            padding: 10px;
-            text-align: center;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            letter-spacing: 3px;
-            border-bottom: 2px solid #ff4d4d;
-            text-shadow: 0 0 8px #ff0000;
-            margin-bottom: 20px;
-        }
-
-        .skull {
-            font-size: 1.5rem;
-            vertical-align: middle;
-            margin: 0 15px;
-            filter: drop-shadow(0 0 5px #fff);
-        }
-
-        .feed-container {
-            background: #0d1117;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            padding: 15px;
-            max-width: 600px;
-            margin: 20px auto;
-        }
-
-        .tweet {
-            display: flex;
-            gap: 12px;
-        }
-
-        .avatar {
-            width: 48px; height: 48px;
-            background: #58a6ff;
-            border-radius: 50%;
-            flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px;
-        }
-
-        .tweet-content { color: #e6edf3; font-family: sans-serif; font-size: 15px; line-height: 1.4; }
-        .tweet-user { font-weight: bold; margin-right: 5px; }
-        .tweet-handle { color: #8b949e; font-size: 14px; }
-        .tweet-text { margin-top: 4px; }
+        body { background: #000; color: #fff; font-family: monospace; }
+        .pirate-banner { background: #440000; color: #ff4d4d; padding: 10px; text-align: center; border-bottom: 2px solid #ff4d4d; }
+        .danger { color: #ff0000; }
+        .chill { color: #00ff00; }
+        .dot { font-size: 20px; }
     </style>
 </head>
-<body class="[[status_class]]">
-    <div class="pirate-banner">
-    <span class="skull">☠️</span> 
-    OFFICIAL NAVY PIRATE MONITOR - MAY 2026 STANDOFF 
-    <span class="skull">☠️</span>
-    </div>  
-
-    <div class="news-banner">
-        <span class="live-dot">●</span> LIVE HORMUZ MONITOR | MAY 2, 2026
-    </div>
-
-    <div class="container">
-        <div class="status-box">[[status_text]]</div>
-
-        <div class="gauge-container">
-            <div class="gauge"><div class="needle" style="transform: translateX(-50%) rotate([[panic_angle]]deg);"></div></div>
-            <p>CRISIS LEVEL: <strong>[[panic_level]]</strong></p>
+<body>
+    <div class="pirate-banner">🏴‍☠️ NAVY PIRATE MONITOR - MAY 2026 🏴‍☠️</div>
+    
+    <div style="padding: 20px;">
+        <h1>Current Headline: [[headline]]</h1>
+        <p>Oil Price: $[[oil_price]] | Global War Cost: $[[war_cost]]B</p>
+        <p>Status: <span class="[[status_class]]">[[status_text]]</span></p>
+        
+        <div class="quote-box">
+            <p><em>[[meme_quote]]</em></p>
         </div>
 
-        <div class="meme-ticker">
-            <h3>🔴 INTEL SUMMARY</h3>
-            <p><strong>[[latest_headline]]</strong></p>
-            <p class="meme-quote">"[[meme_quote]]"</p>
-        </div>
-
-        <div class="feed-container">
-            <div class="tweet">
-                <div class="avatar">🏴‍☠️</div>
-                <div class="tweet-content">
-                    <div>
-                        <span class="tweet-user">Captain_Stuck</span>
-                        <span class="tweet-handle">@StuckInTheStrait · [[last_update]]</span>
-                    </div>
-                    <div class="tweet-text">[[meme_quote]]</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="history-container">
-            <h3>📊 24-HOUR TREND</h3>
-            <table id="history-table">
+        <hr>
+        <h3>Captain's Log (History)</h3>
+        <table border="1" width="100%">
+            <thead>
                 <tr>
-                    <th>Time (UTC)</th>
+                    <th>Time</th>
                     <th>Status</th>
                     <th>Oil</th>
-                    <th>Vibe</th>
                 </tr>
-                [[history_rows]]
-                </table>
-        </div>
-
-        <div class="data-grid">
-            <div class="data-item">BRENT CRUDE<br><strong>$[[oil_price]]</strong></div>
-            <div class="data-item">TRAFFIC FLOW<br><strong>[[traffic_flow]]%</strong></div>
-            <div class="data-item">WAR COST<br><strong>[[war_cost]]</strong></div>
-        </div>
-
-        <div class="footer">LAST SYNC: [[last_update]] GMT | RE-SYNC IN 60 MINS</div>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
     </div>
 </body>
 </html>
