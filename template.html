@@ -15,10 +15,10 @@
             text-align: center;
         }
 
-        /* Changes background based on status */
+        /* Status Colors */
         body.danger { background-color: #4b0000; }
+        body.chill { background-color: #1a1a1a; }
         body.warning { background-color: #5c4d00; }
-        body.success { background-color: #002b00; }
 
         .news-banner {
             background: #ff0000;
@@ -55,8 +55,6 @@
             bottom: 0;
             left: 50%;
             transform-origin: bottom center;
-            /* The Python script will change this number */
-            transform: translateX(-50%) rotate({{ panic_angle }}deg);
             transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
@@ -68,7 +66,6 @@
             text-transform: uppercase;
         }
 
-        /* MEME TICKER */
         .meme-ticker {
             background: rgba(0,0,0,0.4);
             border: 1px solid #444;
@@ -90,13 +87,11 @@
         }
         .data-item { background: #333; padding: 15px; border-radius: 5px; }
         
-        .footer { font-size: 0.8em; opacity: 0.6; margin-top: 50px; }
-
         #history-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Courier New', monospace;
             font-size: 0.9rem;
         }
 
@@ -106,20 +101,12 @@
             border-bottom: 2px solid #444;
             padding: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         #history-table td {
             padding: 12px 8px;
             border-bottom: 1px solid #333;
         }
-
-        /* Color coding for the history statuses */
-        .hist-danger { color: #ff4d4d; font-weight: bold; }
-        .hist-success { color: #00ff00; }
-        .hist-warning { color: #ffcc00; }
-
-        .time-col { color: #aaa; }
 
         .pirate-banner {
             background: linear-gradient(90deg, #000, #440000, #000);
@@ -134,12 +121,7 @@
             margin-bottom: 20px;
         }
 
-        .skull {
-            font-size: 1.5rem;
-            vertical-align: middle;
-            margin: 0 15px;
-            filter: drop-shadow(0 0 5px #fff);
-        }
+        .skull { font-size: 1.5rem; vertical-align: middle; margin: 0 15px; }
 
         .feed-container {
             background: #0d1117;
@@ -148,44 +130,42 @@
             padding: 15px;
             max-width: 600px;
             margin: 20px auto;
+            text-align: left; /* Align text left for tweet feel */
         }
 
-        .tweet {
-            display: flex;
-            gap: 12px;
-        }
-
+        .tweet { display: flex; gap: 12px; }
         .avatar {
             width: 48px; height: 48px;
             background: #58a6ff;
             border-radius: 50%;
-            flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
             font-size: 24px;
         }
-
-        .tweet-content { color: #e6edf3; font-family: sans-serif; font-size: 15px; line-height: 1.4; }
-        .tweet-user { font-weight: bold; margin-right: 5px; }
-        .tweet-handle { color: #8b949e; font-size: 14px; }
-        .tweet-text { margin-top: 4px; }
+        .tweet-content { color: #e6edf3; font-family: sans-serif; font-size: 15px; }
+        .tweet-user { font-weight: bold; }
+        .tweet-handle { color: #8b949e; }
+        
+        .footer { font-size: 0.8em; opacity: 0.6; margin-top: 50px; padding-bottom: 40px; }
     </style>
 </head>
 <body class="[[status_class]]">
     <div class="pirate-banner">
-    <span class="skull">☠️</span> 
-    OFFICIAL NAVY PIRATE MONITOR - MAY 2026 STANDOFF 
-    <span class="skull">☠️</span>
+        <span class="skull">☠️</span> 
+        OFFICIAL NAVY PIRATE MONITOR - MAY 2026 
+        <span class="skull">☠️</span>
     </div>  
 
     <div class="news-banner">
-        <span class="live-dot">●</span> LIVE HORMUZ MONITOR | MAY 2, 2026
+        <span class="live-dot">●</span> LIVE HORMUZ MONITOR | MAY 2026
     </div>
 
     <div class="container">
         <div class="status-box">[[status_text]]</div>
 
         <div class="gauge-container">
-            <div class="gauge"><div class="needle" style="transform: translateX(-50%) rotate([[panic_angle]]deg);"></div></div>
+            <div class="gauge">
+                <div class="needle" style="transform: translateX(-50%) rotate([[panic_angle]]deg);"></div>
+            </div>
             <p>CRISIS LEVEL: <strong>[[panic_level]]</strong></p>
         </div>
 
@@ -211,26 +191,28 @@
         <div class="history-container">
             <h3>📊 24-HOUR TREND</h3>
             <table id="history-table">
-                <tr>
-                    <th>Time (UTC)</th>
-                    <th>Status</th>
-                    <th>Oil</th>
-                    <th>Vibe</th>
-                </tr>
-                [[history_rows]]
-                </table>
+                <thead>
+                    <tr>
+                        <th>Time (UTC)</th>
+                        <th>Status</th>
+                        <th>Oil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    [[history_rows]]
+                </tbody>
+            </table>
         </div>
 
         <div class="data-grid">
             <div class="data-item">BRENT CRUDE<br><strong>$[[oil_price]]</strong></div>
             <div class="data-item">TRAFFIC FLOW<br><strong>[[traffic_flow]]%</strong></div>
-            <div class="data-item">WAR COST<br><strong>[[war_cost]]</strong></div>
+            <div class="data-item">WAR COST<br><strong>$[[war_cost]]B</strong></div>
         </div>
 
-        <div class="footer">LAST SYNC: [[last_update]] GMT | RE-SYNC IN 60 MINS</div>
-    </div>
-</body>
-</html>        </table>
+        <div class="footer">
+            LAST SYNC: [[last_update]] GMT | RE-SYNC IN 60 MINS
+        </div>
     </div>
 </body>
 </html>

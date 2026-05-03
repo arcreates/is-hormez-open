@@ -64,14 +64,17 @@ def update_monitor():
 
     # The Big Fix: Matching your [[latest_headline]] tag
     replacements = {
-        "[[latest_headline]]": str(headline),
+        "[[status_class]]": status_class,
+        "[[status_text]]": status_text,
+        "[[panic_angle]]": str(panic_angle),
+        "[[panic_level]]": panic_level,
+        "[[latest_headline]]": headline,
+        "[[meme_quote]]": meme_quote,
+        "[[last_update]]": last_update,
+        "[[history_rows]]": recent_history,  # Make sure this matches!
         "[[oil_price]]": str(oil_price),
-        "[[war_cost]]": str(war_cost_billions),
-        "[[status_class]]": str(status_class),
-        "[[status_text]]": str(status_text),
-        "[[meme_quote]]": str(meme_quote),
-        "[[last_update]]": str(last_update),
-        "": recent_history
+        "[[traffic_flow]]": str(random.randint(60, 95)), # Add this if you want it
+        "[[war_cost]]": str(war_cost_billions)
     }
 
     # Strict replacement loop
