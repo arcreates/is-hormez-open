@@ -3,7 +3,8 @@ import requests
 from datetime import datetime
 
 def update_monitor():
-    # 1. Fetch News
+    # 1. FETCH NEWS DATA
+    # Using a fallback for Saturday Night, May 2, 2026 intel
     api_key = os.getenv('NEWS_API_KEY')
     url = f'https://newsapi.org/v2/everything?q=Strait+of+Hormuz+OR+Iran+Blockade&sortBy=publishedAt&apiKey={api_key}'
     
@@ -12,17 +13,25 @@ def update_monitor():
         news_data = response.json()
         headline = news_data['articles'][0]['title'] if news_data.get('articles') else "Naval Standoff Continues in Strait"
     except:
-        headline = "Trump Rejects Iran Peace Deal; Navy Enforces 'Pirate' Blockade"
+        headline = "Trump Not Satisfied with Iran Proposal; War Likely if Tolls Continue"
 
-    # 2. SATURDAY MAY 2, 2026 DATA
+    # 2. SATURDAY NIGHT STATS (MAY 2, 2026)
     oil_price = "108.17" 
     traffic_flow = "8" 
+    current_time = datetime.now().strftime("%H:00")
     
-   # 3. UPDATED VIBE LOGIC (May 2, 2026 Night Update)
-    # Check BOTH the headline and the meme for danger
+    # 3. DEFINE QUOTE & DANGER LOGIC
+    # We define the quote first so it's available for the 'combined_text' check
+    headline_low = headline.lower()
+    danger_words = ["pirate", "reject", "likely", "war", "satisfied", "threat", "blockade", "sanctions", "tehran", "crush"]
+
+    if any(word in headline_low for word in danger_words):
+        meme_quote = "Captain_Stuck: 'Trump calling the Navy pirates is a mood.' #Hormuz2026"
+    else:
+        meme_quote = "Fisherman_Dave: 'Quiet day on the water. No carriers in sight.'"
+
+    # Check BOTH for a total 'Vibe Check'
     combined_text = (headline + meme_quote).lower()
-    
-    danger_words = ["pirate", "reject", "likely", "war", "satisfied", "threat", "blockade", "sanctions", "tehran"]
     
     if any(word in combined_text for word in danger_words):
         panic_angle = 75
@@ -37,7 +46,33 @@ def update_monitor():
         panic_level = "CHILL"
         vibe_check = "Smooth"
 
-    # 4. DATA DICTIONARY
+    # 4. PERSISTENT HISTORY LOGIC
+    # We try to read the existing index.html to find previous history rows
+    new_row = f"""
+    <tr style="border-bottom: 1px solid #444;">
+        <td style="padding: 10px;">{current_time}</td>
+        <td>{status_text}</td>
+        <td>${oil_price}</td>
+        <td>{vibe_check}</td>
+    </tr>"""
+
+    try:
+        with open('index.html', 'r') as f:
+            old_content = f.read()
+        
+        if "" in old_content:
+            # Extract existing rows between the markers
+            existing_history = old_content.split("")[1].split("")[0]
+            # Keep top 4 old rows + the 1 new row (Total 5)
+            rows = [r for r in existing_history.split('</tr>') if '<td>' in r][:4]
+            history_rows = new_row + "</tr>".join(rows) + "</tr>"
+        else:
+            history_rows = new_row
+    except Exception as e:
+        print(f"History Merge Failed: {e}")
+        history_rows = new_row
+
+    # 5. DATA MAPPING
     data = {
         "status_text": status_text,
         "status_class": status_class,
@@ -48,52 +83,23 @@ def update_monitor():
         "oil_price": oil_price,
         "traffic_flow": traffic_flow,
         "vibe_check": vibe_check,
-        "last_update": datetime.now().strftime("%H:00")
+        "last_update": current_time,
+        "history_rows": history_rows
     }
 
-    # 4.5 LOGIC FOR HISTORY ROWS
-    new_row = f"""
-    <tr style="border-bottom: 1px solid #444;">
-        <td style="padding: 10px;">{datetime.now().strftime("%H:00")}</td>
-        <td>{status_text}</td>
-        <td>${oil_price}</td>
-        <td>{vibe_check}</td>
-    </tr>
-    """
-
-    # Try to keep the last 5 rows from the existing page
-    try:
-        with open('index.html', 'r') as f:
-            old_page = f.read()
-        # This is a bit 'hacky' but works for a single-file site:
-        # We grab everything between the first <tr> and the last </tr>
-        if "" in old_page:
-            existing_history = old_page.split("")[1].split("")[0]
-            # Keep only the last 4 rows to avoid the page getting too long
-            rows = existing_history.split('</tr>')[:4]
-            history_rows = new_row + "</tr>".join(rows) + "</tr>"
-        else:
-            history_rows = new_row
-    except:
-        history_rows = new_row
-
-    # Add this to your data dictionary
-    data["history_rows"] = history_rows
-
-    # 5. READ AND INJECT (Using Square Brackets [[ ]])
+    # 6. INJECTION
     with open('template.html', 'r') as f:
         content = f.read()
 
     for key, value in data.items():
-        # This now looks for [[key]] instead of {{key}}
         placeholder = "[[" + key + "]]"
         content = content.replace(placeholder, str(value))
 
-    # 6. SAVE
+    # 7. SAVE OUTPUT
     with open('index.html', 'w') as f:
         f.write(content)
     
-    print(f"Update successful. Status: {status_text}")
+    print(f"Deployment Successful: {status_text} at {current_time}")
 
 if __name__ == "__main__":
     update_monitor()
