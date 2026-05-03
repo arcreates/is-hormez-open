@@ -23,24 +23,27 @@ def update_monitor():
     last_update = datetime.now().strftime("%I:%M %p")
 
     # 2. STATUS & GAUGE LOGIC
-    status_class = "chill"
-    status_text = "Vessels Moving"
-    panic_level = "MODERATE"
-    panic_angle = -45
-    traffic_flow = random.randint(88, 96) # High flow when chill
-
     if any(word in headline.lower() for word in DANGER_WORDS):
         status_class = "danger"
         status_text = "PIRACY INTENSIFIES"
         panic_level = "CRITICAL"
         panic_angle = 45
-        traffic_flow = random.randint(12, 28) # Massive drop during piracy
+        # Reality check: Blockades mean almost zero flow
+        traffic_flow = random.randint(5, 15) 
     elif oil_price > 112:
         status_class = "warning"
         status_text = "Market Volatility"
         panic_level = "ELEVATED"
         panic_angle = 0
-        traffic_flow = random.randint(65, 78) # Slight slowdown
+        # Tension slows things down for inspections
+        traffic_flow = random.randint(40, 60) 
+    else:
+        status_class = "chill"
+        status_text = "Vessels Moving"
+        panic_level = "MODERATE"
+        panic_angle = -45
+        # Business as usual
+        traffic_flow = random.randint(88, 97)
 
     # 3. CAPTAIN'S QUOTE ENGINE
     quotes = {
