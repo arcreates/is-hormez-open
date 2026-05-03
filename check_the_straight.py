@@ -18,6 +18,7 @@ def update_monitor():
         headline = "Intelligence Dark: Captain_Stuck is adjusting the satellite dish."
 
     oil_price = round(random.uniform(108.50, 115.00), 2)
+    pirate_tax = "0% (For Now)" # Default fallback
     war_cost_billions = round(random.uniform(92.1, 98.9), 1)
     traffic_flow = random.randint(62, 89)
     last_update = datetime.now().strftime("%I:%M %p")
