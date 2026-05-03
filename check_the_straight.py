@@ -46,15 +46,19 @@ def update_monitor():
         panic_level = "CHILL"
         vibe_check = "Smooth"
 
-    # 4. PERSISTENT HISTORY LOGIC
-    # We try to read the existing index.html to find previous history rows
+    # 4. UPDATED PERSISTENT HISTORY LOGIC
+    # Map the status_class to a history color class
+    hist_color_class = f"hist-{status_class}"
+
     new_row = f"""
-    <tr style="border-bottom: 1px solid #444;">
-        <td style="padding: 10px;">{current_time}</td>
-        <td>{status_text}</td>
+    <tr>
+        <td class="time-col">{current_time}</td>
+        <td class="{hist_color_class}">● {status_text}</td>
         <td>${oil_price}</td>
-        <td>{vibe_check}</td>
+        <td style="font-style: italic; color: #eee;">{vibe_check}</td>
     </tr>"""
+
+    # ... rest of your history merge logic ...
 
     try:
         with open('index.html', 'r') as f:

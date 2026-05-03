@@ -91,6 +91,35 @@
         .data-item { background: #333; padding: 15px; border-radius: 5px; }
         
         .footer { font-size: 0.8em; opacity: 0.6; margin-top: 50px; }
+
+        #history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+
+        #history-table th {
+            text-align: left;
+            color: #888;
+            border-bottom: 2px solid #444;
+            padding: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #history-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        /* Color coding for the history statuses */
+        .hist-danger { color: #ff4d4d; font-weight: bold; }
+        .hist-success { color: #00ff00; }
+        .hist-warning { color: #ffcc00; }
+
+        .time-col { color: #aaa; }
     </style>
 </head>
 <body class="[[status_class]]">
