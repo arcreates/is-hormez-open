@@ -31,6 +31,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add index.html history.txt  # Added history.txt here
-          git commit -m "Hourly Intel Update [skip ci]" || echo "No changes to commit"
+          git add index.html history.txt
+          git commit -m "Log Entry: $(date) [skip ci]" || echo "No changes"
           git push
