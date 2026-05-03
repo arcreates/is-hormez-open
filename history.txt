@@ -1,1 +1,2 @@
 
+<tr><td class='time-col'>03:58 AM</td><td><span class='hist-danger'>● PIRACY INTENSIFIES</span></td><td>$113.95</td></tr>

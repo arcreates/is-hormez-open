@@ -1,1 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavyPirateMonitor.com | LIVE HORMEZ INTEL</title>
+    <style>
+        /* THE NEWSROOM LOOK */
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            transition: background-color 0.5s ease;
+            text-align: center;
+        }
 
+        /* Status Colors */
+        body.danger { background-color: #4b0000; }
+        body.chill { background-color: #1a1a1a; }
+        body.warning { background-color: #5c4d00; }
+
+        .news-banner {
+            background: #ff0000;
+            padding: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border-bottom: 3px solid white;
+        }
+
+        .live-dot {
+            color: #fff;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+
+        .container { padding: 40px 20px; max-width: 800px; margin: auto; }
+
+        /* THE GAUGE */
+        .gauge-container { margin: 40px 0; }
+        .gauge {
+            width: 240px;
+            height: 120px;
+            background: linear-gradient(to right, #00ff00, #ffff00, #ff0000);
+            border-radius: 120px 120px 0 0;
+            position: relative;
+            margin: auto;
+            border: 5px solid #333;
+        }
+        .needle {
+            width: 4px;
+            height: 100px;
+            background: white;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform-origin: bottom center;
+            transition: transform 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .status-box {
+            font-size: 3em;
+            font-weight: 900;
+            margin: 20px 0;
+            text-transform: uppercase;
+        }
+
+        .meme-ticker {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #444;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .meme-quote {
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            font-size: 1.2em;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .data-item { background: #333; padding: 15px; border-radius: 5px; }
+        
+        #history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        #history-table th {
+            text-align: left;
+            color: #888;
+            border-bottom: 2px solid #444;
+            padding: 8px;
+            text-transform: uppercase;
+        }
+
+        #history-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid #333;
+        }
+
+        .pirate-banner {
+            background: linear-gradient(90deg, #000, #440000, #000);
+            color: #ff4d4d;
+            padding: 10px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            letter-spacing: 3px;
+            border-bottom: 2px solid #ff4d4d;
+            text-shadow: 0 0 8px #ff0000;
+            margin-bottom: 20px;
+        }
+
+        .skull { font-size: 1.5rem; vertical-align: middle; margin: 0 15px; }
+
+        .feed-container {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 15px;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left; /* Align text left for tweet feel */
+        }
+
+        .tweet { display: flex; gap: 12px; }
+        .avatar {
+            width: 48px; height: 48px;
+            background: #58a6ff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+        }
+        .tweet-content { color: #e6edf3; font-family: sans-serif; font-size: 15px; }
+        .tweet-user { font-weight: bold; }
+        .tweet-handle { color: #8b949e; }
+        
+        .footer { font-size: 0.8em; opacity: 0.6; margin-top: 50px; padding-bottom: 40px; }
+    </style>
+</head>
+<body class="danger">
+    <div class="pirate-banner">
+        <span class="skull">☠️</span> 
+        OFFICIAL NAVY PIRATE MONITOR - MAY 2026 
+        <span class="skull">☠️</span>
+    </div>  
+
+    <div class="news-banner">
+        <span class="live-dot">●</span> LIVE HORMUZ MONITOR | MAY 2026
+    </div>
+
+    <div class="container">
+        <div class="status-box">PIRACY INTENSIFIES</div>
+
+        <div class="gauge-container">
+            <div class="gauge">
+                <div class="needle" style="transform: translateX(-50%) rotate(45deg);"></div>
+            </div>
+            <p>CRISIS LEVEL: <strong>CRITICAL</strong></p>
+        </div>
+
+        <div class="meme-ticker">
+            <h3>🔴 INTEL SUMMARY</h3>
+            <p><strong>Iran announces ‘new rules’ for Strait of Hormuz as US refuses to lift naval blockade</strong></p>
+            <p class="meme-quote">"'They call us pirates. I call us stationary.'"</p>
+        </div>
+
+        <div class="feed-container">
+            <div class="tweet">
+                <div class="avatar">🏴‍☠️</div>
+                <div class="tweet-content">
+                    <div>
+                        <span class="tweet-user">Captain_Stuck</span>
+                        <span class="tweet-handle">@StuckInTheStrait · 03:58 AM</span>
+                    </div>
+                    <div class="tweet-text">'They call us pirates. I call us stationary.'</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-container">
+            <h3>📊 24-HOUR TREND</h3>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                        <th>Time (UTC)</th>
+                        <th>Status</th>
+                        <th>Oil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class='time-col'>03:58 AM</td><td><span class='hist-danger'>● PIRACY INTENSIFIES</span></td><td>$113.95</td></tr>
+
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="data-grid">
+            <div class="data-item">BRENT CRUDE<br><strong>$113.95</strong></div>
+            <div class="data-item">TRAFFIC FLOW<br><strong>70%</strong></div>
+            <div class="data-item">WAR COST<br><strong>$96.9B</strong></div>
+        </div>
+
+        <div class="footer">
+            LAST SYNC: 03:58 AM GMT | RE-SYNC IN 60 MINS
+        </div>
+    </div>
+</body>
+</html>
