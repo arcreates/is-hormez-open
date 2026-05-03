@@ -1,2 +1,3 @@
 
 <tr><td class='time-col'>04:27 AM</td><td><span class='hist-chill'>● Vessels Moving</span></td><td>$110.4</td></tr>
+<tr><td class='time-col'>04:35 AM</td><td><span class='hist-danger'>● PIRACY INTENSIFIES</span></td><td>$114.4</td></tr>
