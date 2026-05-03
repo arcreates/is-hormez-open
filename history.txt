@@ -9,3 +9,4 @@
 <tr><td class='time-col'>11:32 AM</td><td><span class='hist-danger'>● PIRACY INTENSIFIES</span></td><td>$114.82</td></tr>
 <tr><td class='time-col'>12:37 PM</td><td><span class='hist-danger'>● PIRACY INTENSIFIES</span></td><td>$109.78</td></tr>
 <tr><td class='time-col'>02:03 PM</td><td><span class='hist-danger'>● PIRACY INTENSIFIES</span></td><td>$109.9</td></tr>
+<tr><td class='time-col'>03:35 PM</td><td><span class='hist-chill'>● Vessels Moving</span></td><td>$111.98</td></tr>
