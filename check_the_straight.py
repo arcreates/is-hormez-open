@@ -18,36 +18,24 @@ def update_monitor():
     oil_price = "108.17" 
     traffic_flow = "8" 
     
-   # 3. BEEFED UP VIBE LOGIC (May 2, 2026 Update)
-    headline_low = headline.lower()
+   # 3. UPDATED VIBE LOGIC (May 2, 2026 Night Update)
+    # Check BOTH the headline and the meme for danger
+    combined_text = (headline + meme_quote).lower()
     
-    # We are adding more 'Danger' triggers based on tonight's specific news
-    danger_words = ["pirate", "reject", "likely", "war", "satisfied", "threat", "blockade", "sanctions"]
-    warning_words = ["negotiation", "talks", "proposal", "pakistan", "mediator"]
-
-    if any(word in headline_low for word in danger_words):
+    danger_words = ["pirate", "reject", "likely", "war", "satisfied", "threat", "blockade", "sanctions", "tehran"]
+    
+    if any(word in combined_text for word in danger_words):
         panic_angle = 75
         status_text = "EFFECTIVELY CLOSED"
         status_class = "danger"
         panic_level = "MAXIMUM PIRACY"
         vibe_check = "Aggressive"
-        meme_quote = "Captain_Stuck: 'Trump says Navy is like pirates. I guess I need a parrot now.' #Hormuz2026"
-        
-    elif any(word in headline_low for word in warning_words):
-        panic_angle = 0
-        status_text = "RESTRICTED / TALKS"
-        status_class = "warning"
-        panic_level = "DIPLOMATIC GRIDLOCK"
-        vibe_check = "Tense"
-        meme_quote = "Consulate_Gen: 'Our memes are GOAT, your blockade is mid.' #Dhamaal"
-        
     else:
         panic_angle = -75
         status_text = "OPEN"
         status_class = "success"
         panic_level = "CHILL"
         vibe_check = "Smooth"
-        meme_quote = "Fisherman_Dave: 'Quiet day on the water. No carriers in sight.'"
 
     # 4. DATA DICTIONARY
     data = {
