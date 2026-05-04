@@ -29,3 +29,4 @@
 <tr><td class='time-col'>08:08 PM</td><td><span class='hist-warning'>● Market Volatility</span></td><td>$112.22</td></tr>
 <tr><td class='time-col'>09:49 PM</td><td><span class='hist-danger'>● PIRACY INTENSIFIES</span></td><td>$109.26</td></tr>
 <tr><td class='time-col'>10:43 PM</td><td><span class='hist-warning'>● Market Volatility</span></td><td>$114.59</td></tr>
+<tr><td class='time-col'>11:40 PM</td><td><span class='hist-danger'>● PIRACY INTENSIFIES</span></td><td>$113.93</td></tr>
