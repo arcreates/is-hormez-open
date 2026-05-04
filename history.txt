@@ -27,3 +27,4 @@
 <tr><td class='time-col'>04:44 PM</td><td><span class='hist-chill'>● Vessels Moving</span></td><td>$110.13</td></tr>
 <tr><td class='time-col'>06:07 PM</td><td><span class='hist-chill'>● Vessels Moving</span></td><td>$111.53</td></tr>
 <tr><td class='time-col'>08:08 PM</td><td><span class='hist-warning'>● Market Volatility</span></td><td>$112.22</td></tr>
+<tr><td class='time-col'>09:49 PM</td><td><span class='hist-danger'>● PIRACY INTENSIFIES</span></td><td>$109.26</td></tr>
