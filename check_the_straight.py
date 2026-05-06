@@ -30,53 +30,37 @@ def update_monitor():
     # Check if peace words are also present (The Sentiment Buffer)
     has_peace = any(word in headline.lower() for word in PEACE_WORDS)
 
+    # 3. CORE STATUS LOGIC
     if has_danger and not has_peace:
-        status_class = "danger"
-        status_text = "PIRACY INTENSIFIES"
-        panic_level = "CRITICAL"
-        panic_angle = 45
-        traffic_flow = random.randint(5, 12)
-        ships_detected = random.randint(2, 5)
-        vibe_data = f"{ships_detected} Ships (AIS Dark)"
-        pirate_tax = f"+{random.randint(400, 800)}%"
-        insurance_risk = "EXTREME (33x)"
-        tanker_rate = "+400%"
-        # Satirical Threat Counters
-        drones = random.randint(12, 24) + escalation_factor
-        zodiacs = random.randint(8, 15) + (escalation_factor // 2)
-        vibe_suffix = "(Active Targeting)"
+        # ... existing status_class logic ...
+        hazard_pay = "+400% (Blood Money)"
+        traffic_flow = random.randint(4, 7) # Matches the 5% real-world low
+        ships_detected = random.randint(1, 3)
+        vibe_data = f"{ships_detected} Ships (AIS Ghosting)"
+        drone_stat = f"{random.randint(12, 30)} (Aggressive Vibe Check)"
+        zodiac_stat = f"{random.randint(8, 15)} (Circular Doughnuts)"
     
     elif oil_price > 112 or (has_danger and has_peace):
-        status_class = "warning"
-        status_text = "Market Volatility"
-        panic_level = "ELEVATED"
-        panic_angle = 0
-        traffic_flow = random.randint(40, 60)
-        ships_detected = random.randint(15, 25)
-        vibe_data = f"{ships_detected} Ships (Tense)"
-        pirate_tax = f"+{random.randint(50, 150)}%"
-        insurance_risk = "ELEVATED (5x)"
-        tanker_rate = "+120%"
-        # Satirical Threat Counters
-        drones = random.randint(4, 8) + (escalation_factor // 2)
-        zodiacs = random.randint(2, 5)
-        vibe_suffix = "(Surveillance Only)"
+        # ... existing status_class logic ...
+        hazard_pay = "+120% (Panic Pricing)"
+        traffic_flow = random.randint(18, 35) 
+        ships_detected = random.randint(8, 14)
+        vibe_data = f"{ships_detected} Ships (Tense AF)"
+        drone_stat = f"{random.randint(3, 7)} (Shadowing us)"
+        zodiac_stat = f"{random.randint(1, 4)} (Surrounding us)"
     
     else:
-        status_class = "chill"
-        status_text = "Vessels Moving"
-        panic_level = "MODERATE"
-        panic_angle = -45
-        traffic_flow = random.randint(88, 97)
-        ships_detected = random.randint(58, 64)
-        vibe_data = f"{ships_detected} Ships (Normal)"
-        pirate_tax = "0% (For Now)"
-        insurance_risk = "NORMAL"
-        tanker_rate = "BASELINE"
-        # Satirical Threat Counters
-        drones = random.randint(0, 2)
-        zodiacs = 0
-        vibe_suffix = "(Fishermen only)"
+        # EVEN IN CHILL MODE: Throughput recovers slowly
+        hazard_pay = "Standard (Boring)"
+        traffic_flow = random.randint(45, 62) # Never jumps straight to 90%
+        ships_detected = random.randint(22, 31)
+        vibe_data = f"{ships_detected} Ships (Cautious)"
+        drone_stat = f"{random.randint(0, 1)} (Probably a Seagull)"
+        zodiac_stat = "0 (Everyone is Napping)"
+        
+        # Threat Counters
+        drone_stat = f"{random.randint(0, 1)} (Probably a Seagull)"
+        zodiac_stat = "0 (Everyone is Napping)"
 
     drone_stat = f"{drones} {vibe_suffix}"
     zodiac_stat = f"{zodiacs} Spotted"
@@ -121,10 +105,9 @@ def update_monitor():
         "[[history_rows]]": recent_history,
         "[[oil_price]]": str(oil_price),
         "[[traffic_flow]]": str(traffic_flow),
-        "[[war_cost]]": str(war_cost_billions),
         "[[pirate_tax]]": pirate_tax,
         "[[insurance_risk]]": insurance_risk,
-        "[[tanker_rate]]": tanker_rate,
+        "[[hazard_pay]]": hazard_pay, # Renamed from tanker_rate
         "[[vibe_data]]": vibe_data,
         "[[drone_stat]]": drone_stat,
         "[[zodiac_stat]]": zodiac_stat
