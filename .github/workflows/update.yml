@@ -1,39 +1,31 @@
 name: Hormez Monitor Update
-
 on:
-  schedule:
-    - cron: '37 * * * *'
   workflow_dispatch:
+  schedule:
+    - cron: '45 * * * *'
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  run-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
+      - uses: actions/checkout@v4
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
-      - name: Install Dependencies
+      - name: Install Deps
         run: pip install requests
-
-      - name: Run Monitor Script
+      - name: Run Script
         env:
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
         run: python check_the_straight.py
-
-      - name: Commit and Push Changes
+      - name: Save Changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add index.html history.txt counters.txt
-          git commit -m "Intel Sync: $(date) [skip ci]" || echo "No changes to commit"
+          git config --global user.name "HormezBot"
+          git config --global user.email "bot@hormez.com"
+          git add index.html counters.txt history.txt
+          git commit -m "Manual Sync [skip ci]"
           git push origin main
