@@ -1,32 +1,29 @@
-name: Update Hormez Monitor
+name: Hormez Monitor Update
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs every hour
-  workflow_dispatch:      # Allows you to run it manually for testing
+    - cron: '23 * * * *'  # Runs at 23 minutes past every hour
+  workflow_dispatch:      # THIS provides the manual "Run" button
 
 permissions:
-  contents: write         # Gives the bot permission to save your scores
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # Fetches full history so it can push back
+          fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/checkout@v4
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
       - name: Install Dependencies
-        run: |
-          pip install requests
+        run: pip install requests
 
       - name: Run Monitor Script
         env:
@@ -36,7 +33,6 @@ jobs:
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add index.html history.txt counters.txt
-          # Only commit if there are actually changes to avoid errors
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: [[ $(date) ]] Intel Sync" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Intel Sync: $(date)" && git push)
