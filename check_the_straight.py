@@ -28,18 +28,22 @@ def update_monitor():
         primary_headline = "Satellite Link Failure: Check back after the next flyover."
         articles = []
 
-    # 2. PERSISTENT COUNTERS (The Workplace Safety Sign)
+   # 2. PERSISTENT COUNTERS (With "Empty File" Protection)
     counter_file = 'counters.txt'
-    if not os.path.exists(counter_file):
-        with open(counter_file, 'w') as f: f.write("0|0|0")
     
-    with open(counter_file, 'r') as f:
-        t_wins, i_threats, b_count = map(int, f.read().strip().split('|'))
-
-    # 3. SCAN ALL 20 HEADLINES FOR COUNTER INCREMENTS
-    # Logic: Only count +1 per script run to keep it realistic
-    trump_found = False
-    iran_found = False
+    # If file doesn't exist OR is empty, initialize it
+    if not os.path.exists(counter_file) or os.stat(counter_file).st_size == 0:
+        with open(counter_file, 'w') as f: 
+            f.write("0|0|0")
+        t_wins, i_threats, b_count = 0, 0, 0
+    else:
+        with open(counter_file, 'r') as f:
+            content = f.read().strip()
+            if '|' in content:
+                t_wins, i_threats, b_count = map(int, content.split('|'))
+            else:
+                # Fallback if the file format is weird
+                t_wins, i_threats, b_count = 0, 0, 0
 
     for art in articles:
         txt = art['title'].lower()
