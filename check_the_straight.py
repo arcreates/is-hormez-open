@@ -45,19 +45,39 @@ def update_monitor():
             i_threats += 1
             iran_found = True
 
-    # 5. Build Page
+    # 5. BUILD THE PAGE
     if os.path.exists(template_file):
-        with open(template_file, 'r') as f:
+        with open(template_file, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # Super-basic replacement for testing
-        content = content.replace('[[t_wins]]', str(t_wins))
-        content = content.replace('[[i_threats]]', str(i_threats))
-        content = content.replace('[[b_count]]', str(b_count))
-        content = content.replace('[[latest_headline]]', headline)
-        content = content.replace('[[last_update]]', datetime.now().strftime("%H:%M"))
+        # This dictionary MUST include every [[tag]] in your HTML
+        replacements = {
+            "[[status_class]]": status_class,
+            "[[status_text]]": status_text,
+            "[[panic_level]]": panic_level,
+            "[[panic_angle]]": str(panic_angle),
+            "[[latest_headline]]": headline,
+            "[[last_update]]": datetime.now().strftime("%H:%M"),
+            "[[t_wins]]": str(t_wins),
+            "[[i_threats]]": str(i_threats),
+            "[[b_count]]": str(b_count),
+            "[[oil_price]]": str(oil_price),
+            "[[traffic_flow]]": str(traffic_flow),
+            "[[hazard_pay]]": hazard_pay,
+            "[[vibe_data]]": vibe_data,
+            "[[drone_stat]]": drone_stat,
+            "[[zodiac_stat]]": zodiac_stat,
+            "[[meme_quote]]": random.choice(["'They call us pirates. I call us stationary.'", "'Watching the sunset. If only the radar was this pretty.'"]),
+            "[[history_rows]]": recent_history,
+            "[[insurance_risk]]": "MODERATE" if oil_price < 110 else "HIGH", # Placeholder logic
+            "[[pirate_tax]]": "$12,400" if status_class == "danger" else "$0" # Placeholder logic
+        }
 
-        with open(output_file, 'w') as f:
+        # The Magic Loop: replaces EVERY tag automatically
+        for tag, value in replacements.items():
+            content = content.replace(tag, str(value))
+
+        with open(output_file, 'w', encoding='utf-8') as f:
             f.write(content)
         
         # Save counters back
