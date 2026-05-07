@@ -65,7 +65,7 @@ def update_monitor():
         panic_angle = 0
         traffic_flow = random.randint(18, 35) 
         ships_detected = random.randint(8, 14)
-        vibe_data = f"{ships_detected} Ships (Tense AF)"
+        vibe_data = f"{ships_detected} Ships (Tense)"
         pirate_tax = f"+{random.randint(50, 150)}%"
         insurance_risk = "ELEVATED (5x)"
         hazard_pay = "+120% (Panic Pricing)"
