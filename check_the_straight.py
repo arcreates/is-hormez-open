@@ -5,7 +5,7 @@ from datetime import datetime
 
 # --- CONFIGURATION ---
 NEWS_API_KEY = os.getenv('NEWS_API_KEY')
-DANGER_WORDS = ["blockade", "war", "closed", "seized", "pirate", "rubicon", "rejected", "strike", "fired"]
+DANGER_WORDS = ["blockade", "war", "closed", "seized", "pirate", "rubicon", "rejected", "strike", "fired", "refuses", "redline", "refject", "refuse"]
 PEACE_WORDS = ["denies", "avoid", "de-escalation", "end", "talks", "peace", "over"]
 
 def update_monitor():
