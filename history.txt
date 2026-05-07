@@ -63,3 +63,4 @@
 <tr><td class='time-col'>12:23 PM</td><td><span class='hist-warning'>● Market Volatility</span></td><td>$114.18</td></tr>
 <tr><td class='time-col'>02:07 PM</td><td><span class='hist-warning'>● Market Volatility</span></td><td>$113.92</td></tr>
 <tr><td>14:50</td><td>PIRACY INTENSIFIES</td><td>$115.62</td></tr>
+<tr><td>16:27</td><td>Vessels Moving</td><td>$100.66</td></tr>
