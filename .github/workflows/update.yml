@@ -2,8 +2,8 @@ name: Hormez Monitor Update
 
 on:
   schedule:
-    - cron: '37 * * * *' # Random minute to avoid busy times
-  workflow_dispatch:      # This creates the manual run button!
+    - cron: '37 * * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -12,20 +12,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Deps
+      - name: Install Dependencies
         run: pip install requests
 
-      - name: Run
+      - name: Run Monitor Script
         env:
           NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
         run: python check_the_straight.py
@@ -34,6 +34,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A  # This adds ALL changed and NEW files
-          git commit -m "Auto-update: $(date)" || echo "No changes to commit"
+          git add index.html history.txt counters.txt
+          git commit -m "Intel Sync: $(date) [skip ci]" || echo "No changes to commit"
           git push origin main
