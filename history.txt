@@ -56,3 +56,4 @@
 <tr><td class='time-col'>09:54 PM</td><td><span class='hist-chill'>● Vessels Moving</span></td><td>$110.2</td></tr>
 <tr><td class='time-col'>10:36 PM</td><td><span class='hist-warning'>● Market Volatility</span></td><td>$112.36</td></tr>
 <tr><td class='time-col'>11:37 PM</td><td><span class='hist-chill'>● Vessels Moving</span></td><td>$111.06</td></tr>
+<tr><td class='time-col'>01:25 AM</td><td><span class='hist-warning'>● Market Volatility</span></td><td>$113.76</td></tr>
