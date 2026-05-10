@@ -99,3 +99,4 @@
 <tr><td>21:27</td><td>PIRACY INTENSIFIES</td><td>$112.63</td></tr>
 <tr><td>22:24</td><td>Vessels Moving</td><td>$100.7</td></tr>
 <tr><td>23:29</td><td>Vessels Moving</td><td>$100.21</td></tr>
+<tr><td>01:24</td><td>Vessels Moving</td><td>$100.56</td></tr>
