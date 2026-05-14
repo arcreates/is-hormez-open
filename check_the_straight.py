@@ -5,8 +5,8 @@ from datetime import datetime
 
 # --- CONFIGURATION ---
 NEWS_API_KEY = os.getenv('NEWS_API_KEY')
-DANGER_WORDS = ["blockade", "war", "closed", "seized", "pirate", "rubicon", "rejected", "strike", "fired", "refuses", "redline"]
-PEACE_WORDS = ["denies", "avoid", "de-escalation", "end", "talks", "peace", "memorandum", "pause"]
+DANGER_WORDS = ["blockade", "war", "closed", "seized", "pirate", "rubicon", "rejected", "strike", "fired", "refuses", "redline", "reject", "attacked"]
+PEACE_WORDS = ["avoid", "de-escalation", "end", "peace", "memorandum", "pause"]
 
 def update_monitor():
     # 1. SET DEFAULTS (Prevents NameErrors)
@@ -65,6 +65,24 @@ def update_monitor():
         zodiac_stat = str(random.randint(5, 12))
         b_count += 1
 
+    # --- TWEET DATABASE ---
+    CAPTAIN_QUOTES = [
+        "If you can see the drones, they can see you.",
+        "Third zodiac this morning. They're starting to recognize my coffee mug.",
+        "Oil is up. My blood pressure is higher.",
+        "Radar is looking like a game of Tetris today.",
+        "Just saw a seagull wearing a GoPro. The surveillance is getting weird.",
+        "Nothing says 'Good Morning' like a shadowed transit in the Strait.",
+        "Thinking about starting a podcast. 'Stuck in the Strait' has a nice ring to it.",
+        "Is it a blockade or just a very aggressive parking job?",
+        "Another day, another redline crossed. I'm running out of red ink.",
+        "The crew is betting on the next oil price jump. I've got my money on 'Panic'."
+]
+
+    # Choose a random quote
+    current_tweet = random.choice(CAPTAIN_QUOTES)
+    current_time = datetime.now().strftime("%H:%M")
+
     # 5. LOG HISTORY
     new_row = f"<tr><td>{datetime.now().strftime('%H:%M')}</td><td>{status_text}</td><td>${oil_price}</td></tr>\n"
     with open(history_file, 'a') as hf:
@@ -97,6 +115,11 @@ def update_monitor():
             "[[history_rows]]": recent_history,
             "[[insurance_risk]]": "HIGH" if has_danger else "MODERATE",
             "[[pirate_tax]]": "$12,500" if has_danger else "$0"
+            "[[meme_quote]]": random.choice(CAPTAIN_QUOTES),
+            "[[meme_quote]]": current_tweet,
+            "[[last_update]]": current_time,
+        # If your HTML uses a specific tag for the tweet time:
+            "[[tweet_time]]": current_time
         }
 
         for tag, val in replacements.items():
