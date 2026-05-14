@@ -114,7 +114,7 @@ def update_monitor():
             "[[meme_quote]]": random.choice(CAPTAIN_QUOTES),
             "[[history_rows]]": recent_history,
             "[[insurance_risk]]": "HIGH" if has_danger else "MODERATE",
-            "[[pirate_tax]]": "$12,500" if has_danger else "$0"
+            "[[pirate_tax]]": "$12,500" if has_danger else "$0",
             "[[last_update]]": current_time,
         # If your HTML uses a specific tag for the tweet time:
             "[[tweet_time]]": current_time,
