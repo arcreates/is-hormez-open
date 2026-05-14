@@ -111,15 +111,13 @@ def update_monitor():
             "[[vibe_data]]": vibe_data,
             "[[drone_stat]]": drone_stat,
             "[[zodiac_stat]]": zodiac_stat,
-            "[[meme_quote]]": "If you can see the drones, they can see you.",
+            "[[meme_quote]]": random.choice(CAPTAIN_QUOTES),
             "[[history_rows]]": recent_history,
             "[[insurance_risk]]": "HIGH" if has_danger else "MODERATE",
             "[[pirate_tax]]": "$12,500" if has_danger else "$0"
-            "[[meme_quote]]": random.choice(CAPTAIN_QUOTES),
-            "[[meme_quote]]": current_tweet,
             "[[last_update]]": current_time,
         # If your HTML uses a specific tag for the tweet time:
-            "[[tweet_time]]": current_time
+            "[[tweet_time]]": current_time,
         }
 
         for tag, val in replacements.items():
