@@ -403,3 +403,4 @@
 <tr><td>23:57</td><td>Vessels Moving</td><td>$101.67</td></tr>
 <tr><td>05:05</td><td>Vessels Moving</td><td>$100.57</td></tr>
 <tr><td>09:06</td><td>Vessels Moving</td><td>$100.5</td></tr>
+<tr><td>12:45</td><td>Vessels Moving</td><td>$101.01</td></tr>
