@@ -1476,3 +1476,4 @@
 <tr><td>23:18</td><td>PIRACY INTENSIFIES</td><td>$115.81</td></tr>
 <tr><td>01:23</td><td>PIRACY INTENSIFIES</td><td>$113.31</td></tr>
 <tr><td>06:18</td><td>PIRACY INTENSIFIES</td><td>$114.08</td></tr>
+<tr><td>10:54</td><td>PIRACY INTENSIFIES</td><td>$110.39</td></tr>
